@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Управление библиотекой</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+<header>
+    <div class="nav">
+        <a class="brand" asp-controller="Library" asp-action="Index">📚 Library</a>
+        <nav>
+            <a asp-controller="Library" asp-action="Index">Книги</a>
+            <a asp-controller="Library" asp-action="Readers">Читатели / кабинеты</a>
+            <a asp-controller="Library" asp-action="AddBook">Добавить книгу</a>
+            <a asp-controller="Library" asp-action="AddReader">Добавить читателя</a>
+            <a asp-controller="Library" asp-action="Borrow">Выдать</a>
+            <a asp-controller="Library" asp-action="Return">Вернуть</a>
+            <a asp-controller="Library" asp-action="Statistics">Статистика</a>
+        </nav>
+    </div>
+</header>
+<main class="container">
+    @if (TempData["Message"] != null) { <div class="notice">@TempData["Message"]</div> }
+    @if (TempData["Fine"] != null) { <div class="notice">@TempData["Fine"]</div> }
+    @RenderBody()
+</main>
+<footer>Система управления библиотекой • ASP.NET Core MVC • SQLite</footer>
+</body>
+</html>

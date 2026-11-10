@@ -1,0 +1,26 @@
+@model Book
+<h1>Добавить книгу</h1>
+<form method="post" enctype="multipart/form-data" class="form-card wide-form">
+    @Html.AntiForgeryToken()
+    <label>Название книги</label><input asp-for="Title" required />
+    <span asp-validation-for="Title" class="error"></span>
+
+    <label>Автор</label><input asp-for="Author" required />
+    <span asp-validation-for="Author" class="error"></span>
+
+    <label>Год издания</label><input asp-for="Year" type="number" min="1000" max="2100" required />
+    <span asp-validation-for="Year" class="error"></span>
+
+    <label>Описание книги</label>
+    <textarea asp-for="Description" rows="5" placeholder="Краткое содержание, жанр, интересные сведения..."></textarea>
+
+    <label>Обложка книги (JPG, PNG или WEBP, до 5 МБ)</label>
+    <input type="file" name="coverImage" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" />
+
+    <label>Ссылка на YouTube с аудиокнигой</label>
+    <input asp-for="YouTubeUrl" type="url" placeholder="https://www.youtube.com/watch?v=..." />
+    <span asp-validation-for="YouTubeUrl" class="error"></span>
+
+    <button class="btn" type="submit">Сохранить книгу</button>
+    <a asp-action="Index" class="back">Назад</a>
+</form>

@@ -1,0 +1,17 @@
+@model Reader
+<div class="profile-card">
+    <div class="profile-avatar">👤</div>
+    <p class="eyebrow">Личный кабинет читателя</p>
+    <h1>@Model.FullName</h1>
+    <p class="muted">Читатель библиотеки с @Model.RegisteredAt.ToString("dd.MM.yyyy")</p>
+    <div class="profile-grid">
+        <div><span>Дата рождения</span><strong>@(Model.BirthDate?.ToString("dd.MM.yyyy") ?? "Не указана")</strong></div>
+        <div><span>Пол</span><strong>@(Model.Gender ?? "Не указан")</strong></div>
+        <div><span>Учёба / работа</span><strong>@(Model.InstitutionType ?? "—")</strong></div>
+        <div><span>Организация</span><strong>@(Model.Institution ?? "Не указана")</strong></div>
+        <div><span>Электронная почта</span><strong>@(Model.Email ?? "Не указана")</strong></div>
+        <div><span>Телефон</span><strong>@(Model.Phone ?? "Не указан")</strong></div>
+        <div><span>ИИН</span><strong>@(string.IsNullOrWhiteSpace(Model.IIN) ? "Не указан" : "••••••••" + Model.IIN[^4..])</strong></div>
+    </div>
+    <a class="btn" asp-action="Readers">К списку читателей</a>
+</div>

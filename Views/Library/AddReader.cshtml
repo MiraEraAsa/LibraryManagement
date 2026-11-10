@@ -1,0 +1,56 @@
+@model Reader
+<h1>Личный кабинет читателя</h1>
+<p class="muted">Заполните профиль. Для учебной демонстрации используйте только тестовые персональные данные.</p>
+<form method="post" class="form-card wide-form">
+    @Html.AntiForgeryToken()
+
+    <div class="form-grid">
+        <div>
+            <label>Имя</label><input asp-for="Name" required />
+            <span asp-validation-for="Name" class="error"></span>
+        </div>
+        <div>
+            <label>Фамилия</label><input asp-for="Surname" required />
+            <span asp-validation-for="Surname" class="error"></span>
+        </div>
+        <div>
+            <label>Дата рождения</label><input asp-for="BirthDate" type="date" />
+        </div>
+        <div>
+            <label>Пол</label>
+            <select asp-for="Gender">
+                <option value="">Выберите пол</option>
+                <option value="Мужской">Мужской</option>
+                <option value="Женский">Женский</option>
+            </select>
+        </div>
+        <div>
+            <label>Учёба или работа</label>
+            <select asp-for="InstitutionType">
+                <option value="">Выберите категорию</option>
+                <option value="Учёба">Учёба</option>
+                <option value="Работа">Работа</option>
+            </select>
+        </div>
+        <div>
+            <label>Учебное заведение / место работы</label>
+            <input asp-for="Institution" placeholder="Название колледжа, университета или организации" />
+        </div>
+        <div>
+            <label>ИИН (только тестовые 12 цифр)</label>
+            <input asp-for="IIN" inputmode="numeric" maxlength="12" autocomplete="off" placeholder="000000000000" />
+            <span asp-validation-for="IIN" class="error"></span>
+        </div>
+        <div>
+            <label>Электронная почта</label><input asp-for="Email" type="email" placeholder="example@mail.com" />
+            <span asp-validation-for="Email" class="error"></span>
+        </div>
+        <div>
+            <label>Номер телефона</label><input asp-for="Phone" type="tel" placeholder="+7 700 000 00 00" />
+            <span asp-validation-for="Phone" class="error"></span>
+        </div>
+    </div>
+
+    <button class="btn" type="submit">Создать личный кабинет</button>
+    <a asp-action="Readers" class="back">Назад к читателям</a>
+</form>

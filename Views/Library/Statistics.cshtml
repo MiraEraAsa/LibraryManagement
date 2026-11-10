@@ -1,0 +1,9 @@
+@model (int Total, int Available, int Borrowed, int Readers)
+<h1>Статистика библиотеки</h1>
+<div class="stats">
+    <div class="stat"><span>Всего книг</span><strong>@Model.Total</strong></div>
+    <div class="stat"><span>Доступно</span><strong>@Model.Available</strong></div>
+    <div class="stat"><span>Выдано</span><strong>@Model.Borrowed</strong></div>
+    <div class="stat"><span>Читателей</span><strong>@Model.Readers</strong></div>
+</div>
+<a class="btn" asp-action="Index">К списку книг</a>

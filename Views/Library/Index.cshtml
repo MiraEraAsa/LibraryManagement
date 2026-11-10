@@ -1,0 +1,43 @@
+@model List<Book>
+<section class="hero">
+    <p class="eyebrow">@ViewBag.LibraryName</p>
+    <h1>Управление библиотекой</h1>
+    <p>@ViewBag.Welcome</p>
+    <div class="actions">
+        <a class="btn" asp-action="AddBook">＋ Добавить книгу</a>
+        <a class="btn secondary" asp-action="Statistics">Статистика</a>
+    </div>
+</section>
+<h2>Каталог книг</h2>
+<form class="search" asp-action="Search" method="get">
+    <input name="title" placeholder="Поиск по названию" />
+    <input name="author" placeholder="Поиск по автору" />
+    <input name="year" type="number" placeholder="Год" />
+    <button class="btn" type="submit">Найти</button>
+</form>
+@if (Model.Count == 0)
+{
+    <div class="empty">Книг пока нет. Добавьте первую книгу.</div>
+}
+else
+{
+    <div class="book-grid">
+    @foreach (var book in Model)
+    {
+        <article class="book-card">
+            <a asp-action="Details" asp-route-id="@book.Id" class="book-cover">
+                @if (!string.IsNullOrWhiteSpace(book.CoverImageUrl)) {
+                    <img src="@book.CoverImageUrl" alt="Обложка @book.Title" />
+                } else { <div class="cover-placeholder">📖</div> }
+            </a>
+            <div class="book-card-body">
+                <h3><a asp-action="Details" asp-route-id="@book.Id">@book.Title</a></h3>
+                <p>@book.Author · @book.Year</p>
+                <span class="status @(book.IsBorrowed ? "busy" : "free")">@(book.IsBorrowed ? "Выдана" : "Доступна")</span>
+                <p class="book-description">@(!string.IsNullOrWhiteSpace(book.Description) ? book.Description : "Описание не добавлено.")</p>
+                <a class="table-link" asp-action="Details" asp-route-id="@book.Id">Подробнее →</a>
+            </div>
+        </article>
+    }
+    </div>
+}

@@ -1,0 +1,8 @@
+<h1>Вернуть книгу</h1>
+<p class="muted">Бесплатный срок пользования — 14 дней. После этого штраф составляет 100 условных единиц за каждый день просрочки.</p>
+<form method="post" class="form-card">
+    @Html.AntiForgeryToken()
+    <label>Название книги</label><input name="title" required />
+    <button class="btn" type="submit">Вернуть книгу</button>
+    <a asp-action="Index" class="back">Назад</a>
+</form>

@@ -1,0 +1,19 @@
+@model List<Reader>
+<div class="page-heading">
+    <div><p class="eyebrow">Библиотека</p><h1>Читатели и личные кабинеты</h1></div>
+    <a class="btn" asp-action="AddReader">＋ Новый читатель</a>
+</div>
+@if (Model.Count == 0) { <div class="empty">Читателей пока нет.</div> }
+else {
+<div class="table-wrap"><table><thead><tr><th>ФИО</th><th>Учёба / работа</th><th>Почта</th><th>Телефон</th><th>Профиль</th></tr></thead><tbody>
+@foreach (var reader in Model) {
+<tr>
+    <td><strong>@reader.FullName</strong></td>
+    <td>@(reader.InstitutionType ?? "—"): @(reader.Institution ?? "—")</td>
+    <td>@(reader.Email ?? "—")</td>
+    <td>@(reader.Phone ?? "—")</td>
+    <td><a class="table-link" asp-action="ReaderProfile" asp-route-id="@reader.Id">Открыть кабинет →</a></td>
+</tr>
+}
+</tbody></table></div>
+}

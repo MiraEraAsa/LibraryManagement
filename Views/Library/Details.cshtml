@@ -1,0 +1,26 @@
+@model Book
+<div class="book-detail">
+    <div class="book-cover-large">
+        @if (!string.IsNullOrWhiteSpace(Model.CoverImageUrl)) {
+            <img src="@Model.CoverImageUrl" alt="Обложка книги @Model.Title" />
+        } else { <div class="cover-placeholder">📖</div> }
+    </div>
+    <div class="book-info">
+        <p class="eyebrow">Информация о книге</p>
+        <h1>@Model.Title</h1>
+        <h3>@Model.Author</h3>
+        <p class="muted">Год издания: @Model.Year</p>
+        <span class="status @(Model.IsBorrowed ? "busy" : "free")">@(Model.IsBorrowed ? "Выдана" : "Доступна")</span>
+        <h2>Описание</h2>
+        <p class="description">@(!string.IsNullOrWhiteSpace(Model.Description) ? Model.Description : "Описание пока не добавлено.")</p>
+    </div>
+</div>
+@if (!string.IsNullOrWhiteSpace(ViewBag.YouTubeEmbedUrl as string)) {
+    <section class="audio-section">
+        <h2>Аудиокнига на YouTube</h2>
+        <div class="video-frame"><iframe src="@ViewBag.YouTubeEmbedUrl" title="Аудиокнига на YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>
+    </section>
+} else if (!string.IsNullOrWhiteSpace(Model.YouTubeUrl)) {
+    <p class="muted">Ссылка на аудиокнигу: <a href="@Model.YouTubeUrl" target="_blank" rel="noopener noreferrer">Открыть YouTube</a></p>
+}
+<a class="btn" asp-action="Index">← Назад к каталогу</a>

@@ -1,0 +1,8 @@
+<h1>Выдать книгу</h1>
+<form method="post" class="form-card">
+    @Html.AntiForgeryToken()
+    <label>Название книги</label><input name="title" required />
+    <label>Имя читателя (как при регистрации)</label><input name="readerName" required />
+    <button class="btn" type="submit">Выдать книгу</button>
+    <a asp-action="Index" class="back">Назад</a>
+</form>
